@@ -15,10 +15,6 @@ const reviewsSchema = new mongoose.Schema({
     url: String,
     description: String,
   }],
-  videos: [{
-    id: Number,
-    url: String,
-  }],
   tags: [String],
   height: String,
   weight: String,

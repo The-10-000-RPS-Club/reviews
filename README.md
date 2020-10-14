@@ -37,3 +37,12 @@ npm install -g webpack
 npm install
 ```
 
+
+# REST API
+
+## Retrieve all reviews for a given product id
+  GET /api/products/reviews:id
+
+  parameter: product id (int)
+
+
