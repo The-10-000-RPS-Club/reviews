@@ -28,9 +28,10 @@ const Reviews = sequelize.define('review', {
   nickname: {
     type: DataTypes.STRING,
   },
-  tags: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
-  },
+  // tags: {
+  //   type: DataTypes.ARRAY(DataTypes.STRING),
+  // },
+
   // sequelize,
   // modelName: 'Reviews',
   // freezeTableName: true,
@@ -42,7 +43,7 @@ Reviews.sync({force: true})
       product_id: 1,
       id: 2,
       nickname: faker.name.findName(),
-      tags: ['red', 'blue'],
+      // tags: ['red', 'blue'],
     });
   })
 //   
