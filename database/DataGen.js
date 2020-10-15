@@ -56,14 +56,14 @@ const { Reviews } = require('./ReviewSQL.js');
  
       // Reviews.sync({ force: true })
       //   .then(() => {
-          Reviews.create({
-            product_id: 1,
-            review_id: 2,
-            nickname: faker.name.findName(),
-            tags: ['red', 'blue'],
-          })
-          .then((data) => console.log('success'))
-          .catch((err) => console.log(err));
+          // Reviews.create({
+          //   product_id: 1,
+          //   id: 2,
+          //   nickname: faker.name.findName(),
+          //   tags: ['red', 'blue'],
+          // })
+          // .then((data) => console.log('success'))
+          // .catch((err) => console.log(err));
         // })
         // .catch((err) => console.log(err));
         

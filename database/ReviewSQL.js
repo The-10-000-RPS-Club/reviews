@@ -1,20 +1,24 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const faker = require('faker');
 
 const sequelize = new Sequelize('review_service', 'postgres', 'notmongo', {
   host: 'localhost',
   dialect: 'postgres',
+  define: {
+    timestamps: false,
+  }
 });
 
 sequelize.authenticate()
   .then(() => console.log('Successfully connected to PG'))
   .catch((err) => console.log(err));
 
+
 const Reviews = sequelize.define('review', {
-  // timestamps: false,
   product_id: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.INTEGER,
     allowNull: false,
-    // autoIncrement: true,
+    autoIncrement: true,
   },
   id: {
     type: DataTypes.INTEGER,
@@ -27,28 +31,46 @@ const Reviews = sequelize.define('review', {
   tags: {
     type: DataTypes.ARRAY(DataTypes.STRING),
   },
-  // timestamps: false,
+  // sequelize,
+  // modelName: 'Reviews',
+  // freezeTableName: true,
 });
 
-const Images = sequelize.define('image', {
-  // timestamps: false,
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-  url: {
-    type: DataTypes.STRING,
-  },
-  description: {
-    type: DataTypes.STRING,
-  },
-  // timestamps: false,
-})
+Reviews.sync({force: true})
+  .then(() => {
+    Reviews.create({
+      product_id: 1,
+      id: 2,
+      nickname: faker.name.findName(),
+      tags: ['red', 'blue'],
+    });
+  })
+//   
+// })
+// .then((data) => console.log('success'))
+// .catch((err) => console.log(err));
+
+// Reviews.sync();
+
+// const Images = sequelize.define('image', {
+//   // timestamps: false,
+//   id: {
+//     type: DataTypes.INTEGER,
+//     primaryKey: true,
+//   },
+//   url: {
+//     type: DataTypes.STRING,
+//   },
+//   description: {
+//     type: DataTypes.STRING,
+//   },
+//   timestamps: false,
+// });
   
-sequelize.sync({ force: true });
+// sequelize.sync({ force: true });
 
 
-module.exports = { Reviews, Images };
+// module.exports = { Reviews };
 
 
 
