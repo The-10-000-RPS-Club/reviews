@@ -1,0 +1,37 @@
+-----------------------------------------------------------------------------------------------------------------------
+ Index Scan using reviews_pkey on reviews  (cost=0.43..8.45 rows=1 width=45) (actual time=0.286..0.287 rows=1 loops=1)
+   Index Cond: (id = 500)
+ Planning Time: 2.890 ms
+ Execution Time: 0.335 ms
+(4 rows)
+
+Time: 8.371 ms
+review_service=# explain analyze select body from reviews where id = 9500000;
+                                                      QUERY PLAN                                                       
+-----------------------------------------------------------------------------------------------------------------------
+ Index Scan using reviews_pkey on reviews  (cost=0.43..8.45 rows=1 width=45) (actual time=0.654..0.655 rows=1 loops=1)
+   Index Cond: (id = 9500000)
+ Planning Time: 0.120 ms
+ Execution Time: 0.673 ms
+(4 rows)
+
+review_service=# COPY reviews(id, url, description)
+FROM '/users/jred/galvanize/sdc/review-service/database/imageout.csv'
+DELIMITER ','
+CSV HEADER;
+ERROR:  column "url" of relation "reviews" does not exist
+Time: 0.378 ms
+review_service=# COPY images(id, url, description)
+FROM '/users/jred/galvanize/sdc/review-service/database/imageout.csv'
+DELIMITER ','
+CSV HEADER;
+COPY 1000
+Time: 18.058 ms
+review_service=# select * from images where id = 500;
+ id  |                                    url                                    |                 description                  
+-----+---------------------------------------------------------------------------+----------------------------------------------
+ 500 | https://sdc-images-review-service.s3-us-west-2.amazonaws.com/image500.jpg | Ut maxime officiis esse quia cupiditate aut.
+(1 row)
+
+Time: 2.675 ms
+review_service=# 
