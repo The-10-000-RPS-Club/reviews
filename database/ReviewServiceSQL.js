@@ -65,7 +65,7 @@ const Reviews = sequelize.define('review', {
   },
   tags: {
     type: DataTypes.ARRAY(DataTypes.STRING),
-  }
+  },
 });
 
 Reviews.sync({force: true})
@@ -98,7 +98,7 @@ Reviews.sync({force: true})
       primaryKey: true,
     },
     url: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     description: {
       type: DataTypes.TEXT,
