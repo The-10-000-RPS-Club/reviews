@@ -1,13 +1,18 @@
 const fs = require('fs');
 const faker = require('faker');
-const jsonl = require('jsonlines');
-const parser = jsonl.parse();
-const stringifier = jsonl.stringify();
-// const fs = require("fs");
-const { parse } = require("@jsonlines/core");
 
+const file = fs.createWriteStream('./reviewout.jsonl');
+
+let n = 0;
+const lines = 10000000;
+
+for (n; n < lines; n += 1) {
+  if (n % 100000 === 0) {
+    console.log(`${Math.round((((n / lines)) * 100))}% complete`);
+  };
 
 const randScore = (max) => Math.ceil((Math.random() * max));
+
 const randImage = (max = 1000) => {
   const result = [];
   const n = Math.floor(Math.random() * max);
@@ -20,6 +25,7 @@ const randImage = (max = 1000) => {
   }
   return result;
 };
+
 const randTag = () => {
   const tags = ['Shirt', 'Pratical', '#streetWear', 'JinSwagg', 'Snoop'];
   return tags.slice(Math.floor(Math.random() * 1), Math.floor(Math.random() * 5));
@@ -43,43 +49,27 @@ const randFit = () => {
   return fit[Math.floor(Math.random() * fit.length)];
 };
 
-const genData = (n) => {
-  const collection = [];
-  let doc;
-for (let id = 1; id <= n; id += 1) {
-   doc = {
-      product_id: Math.floor(Math.random() * 10000000),
-      id,
-      nickname: faker.name.findName(),
-      rating: randScore(5),
-      // title: faker.commerce.productDescription(),
-      // body: faker.lorem.sentence(),
-      // images: randImage(5),
-      // tags: randTag(),
-      // height: randHeight(),
-      // weight: randWeight(),
-      // fit: randFit(),
-      // age: randAge(),
-      // location: faker.address.city(),
-      // email: faker.internet.email(),
-      // helpful_yes: 2,
-      // helpful_no: 3,
-    };
-    collection.push(JSON.stringify(doc));
-  }
-  
-  return collection;
-};
+  const doc = {
+    product_id: Math.floor(Math.random() * 10000000),
+    id: n,
+    nickname: faker.name.findName(),
+    rating: randScore(5),
+    title: faker.commerce.productDescription(),
+    created_at: faker.date.past(),
+    body: faker.lorem.sentence(),
+    images: randImage(5),
+    tags: randTag(),
+    height: randHeight(),
+    weight: randWeight(),
+    fit: randFit(),
+    age: randAge(),
+    location: faker.address.city(),
+    email: faker.internet.email(),
+    helpful_yes: 2,
+    helpful_no: 3,
+  };
 
-// const newColl = genData(2);
-// const splitted = newColl.split(',');
-// splitted.forEach(t => console.log(`${t}`));
-// create a duplex stream which parse input as lines of json
+  file.write(`${JSON.stringify(doc)}\n`);
+}
 
-// stringifier.pipe(process.stdout);
-
-const output = genData(2);
-// const parseStream = parse(output);
-// console.log((parse(output)));
-
-fs.writeFileSync('out.jsonl', output);
+file.end();

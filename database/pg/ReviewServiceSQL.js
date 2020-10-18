@@ -113,24 +113,4 @@ Reviews.sync({force: true})
       description
     });
   });
-  
-  // const Tags = sequelize.define('tag', {
-  //   id: {
-  //     type: DataTypes.INTEGER,
-  //     allowNull: false,
-  //     autoIncrement: true,
-  //     primaryKey: true,
-  //   },
-  //   body: {
-  //     type: DataTypes.STRING,
-  //   },
-  // });
-
-  // Tags.sync({force: true})
-  // .then(() => {
-  //   Reviews.create({
-  //     id,
-  //     body
-  //   });
-  // });
-  
+ 
