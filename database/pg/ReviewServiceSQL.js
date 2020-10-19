@@ -90,27 +90,40 @@ Reviews.sync({force: true})
     });
   })
 
-  const Images = sequelize.define('image', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    url: {
-      type: DataTypes.TEXT,
-    },
-    description: {
-      type: DataTypes.TEXT,
-    },
-  });
+  // const Images = sequelize.define('image', {
+  //   id: {
+  //     type: DataTypes.INTEGER,
+  //     allowNull: false,
+  //     autoIncrement: true,
+  //     primaryKey: true,
+  //   },
+  //   url: {
+  //     type: DataTypes.TEXT,
+  //   },
+  //   description: {
+  //     type: DataTypes.TEXT,
+  //   },
+  //   review_id: {
+  //     type: DataTypes.INTEGER,
+  //     references: {
+  //       model: 'review',
+  //       key: 'id',
+  //     }
+  //   }
+  // });
 
-  Images.sync({force: true})
-  .then(() => {
-    Reviews.create({
-      id,
-      url,
-      description
-    });
-  });
+  // Images.sync({force: true})
+  // .then(() => {
+  //   Images.create({
+  //     id,
+  //     url,
+  //     description,
+  //     review_id
+  //   });
+  // });
+
+  // Reviews.hasMany(Images, {
+  //   foreignKey: 'review_id',
+  // });
+  // Images.belongsTo(Reviews);
  

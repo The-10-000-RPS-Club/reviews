@@ -109,3 +109,6 @@ config.js
 
 #example file I do not want imported
 hookExample.jsx
+
+**/.csv
+**/.jsonl

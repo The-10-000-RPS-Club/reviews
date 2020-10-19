@@ -35,3 +35,42 @@ review_service=# select * from images where id = 500;
 
 Time: 2.675 ms
 review_service=# 
+
+review_service=# explain analyze select * from reviews where id = 5866964;
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Index Scan using reviews_pkey on reviews  (cost=0.43..8.45 rows=1 width=372) (actual time=3.823..3.825 rows=1 loops=1)
+   Index Cond: (id = 5866964)
+ Planning Time: 0.227 ms
+ Execution Time: 3.852 ms
+(4 rows)
+
+review_service=# explain analyze select count(*) from reviews;
+                                                                               QUERY PLAN                                                                                
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=212736.84..212736.85 rows=1 width=8) (actual time=955.978..964.827 rows=1 loops=1)
+   ->  Gather  (cost=212736.62..212736.83 rows=2 width=8) (actual time=955.844..964.816 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         ->  Partial Aggregate  (cost=211736.62..211736.63 rows=1 width=8) (actual time=901.024..901.025 rows=1 loops=3)
+               ->  Parallel Index Only Scan using reviews_pkey on reviews  (cost=0.43..201323.13 rows=4165395 width=0) (actual time=6.278..604.267 rows=3333333 loops=3)
+                     Heap Fetches: 0
+ Planning Time: 0.056 ms
+ JIT:
+   Functions: 8
+   Options: Inlining false, Optimization false, Expressions true, Deforming true
+   Timing: Generation 2.884 ms, Inlining 0.000 ms, Optimization 0.532 ms, Emission 9.268 ms, Total 12.684 ms
+ Execution Time: 965.679 ms
+(13 rows)
+
+
+
+review_service=# select * from reviews, images where reviews.id = 6481202;
+
+ Nested Loop  (cost=0.43..48.45 rows=1000 width=399) (actual time=3.004..3.541 rows=1000 loops=1)
+   ->  Index Scan using reviews_pkey on reviews  (cost=0.43..8.45 rows=1 width=274) (actual time=2.963..2.966 rows=1 loops=1)
+         Index Cond: (id = 941698)
+   ->  Seq Scan on images  (cost=0.00..30.00 rows=1000 width=125) (actual time=0.027..0.262 rows=1000 loops=1)
+ Planning Time: 0.083 ms
+ Execution Time: 9.526 ms
+(6 rows)

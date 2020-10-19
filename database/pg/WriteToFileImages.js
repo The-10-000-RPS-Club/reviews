@@ -8,9 +8,10 @@ const filename = argv.output || 'imageout.csv';
 const writeStream = fs.createWriteStream(filename);
 
 const createImage = (id) => {
+  const review_id = Math.ceil((Math.random() * 9999999));
   const url = `https://sdc-images-review-service.s3-us-west-2.amazonaws.com/image${id}.jpg`;
   const description = faker.lorem.sentence();
-  return `${id},${url},${description}\n`;
+  return `${id},${url},${description},${review_id}\n`;
 };
 
 const startWriting = (writeStream, encoding, done) => {
@@ -35,7 +36,7 @@ const startWriting = (writeStream, encoding, done) => {
   writing();
 };
 
-writeStream.write(`id,url,description\n`, 'utf-8');
+writeStream.write(`id,url,description,review_id\n`, 'utf-8');
 startWriting(writeStream, 'utf-8', () => {
   writeStream.end();
 });
