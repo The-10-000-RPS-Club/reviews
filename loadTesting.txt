@@ -1,0 +1,69 @@
+jred/users/jred/galvanize/sdc/review-service[master !]$ k6 run script.js
+
+          /\      |‾‾| /‾‾/   /‾‾/   
+     /\  /  \     |  |/  /   /  /    
+    /  \/    \    |     (   /   ‾‾\  
+   /          \   |  |\  \ |  (‾)  | 
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: script.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 130 max VUs, 2m30s max duration (incl. graceful stop):
+           * default: 130 looping VUs for 2m0s (gracefulStop: 30s)
+
+
+running (2m00.1s), 000/130 VUs, 151224 complete and 0 interrupted iterations
+default ✓ [======================================] 130 VUs  2m0s
+
+    data_received..............: 66 MB  548 kB/s
+    data_sent..................: 16 MB  132 kB/s
+    http_req_blocked...........: avg=5.8µs   min=1µs      med=3µs      max=6.89ms   p(90)=4µs      p(95)=5µs     
+    http_req_connecting........: avg=1.42µs  min=0s       med=0s       max=3.35ms   p(90)=0s       p(95)=0s      
+    http_req_duration..........: avg=2.99ms  min=230µs    med=1.67ms   max=135.36ms p(90)=6.55ms   p(95)=8.97ms  
+    http_req_receiving.........: avg=29.82µs min=11µs     med=26µs     max=5.57ms   p(90)=45µs     p(95)=55µs    
+    http_req_sending...........: avg=13.44µs min=5µs      med=11µs     max=19.38ms  p(90)=20µs     p(95)=25µs    
+    http_req_tls_handshaking...: avg=0s      min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s      
+    http_req_waiting...........: avg=2.95ms  min=209µs    med=1.62ms   max=135.3ms  p(90)=6.5ms    p(95)=8.93ms  
+    http_reqs..................: 151224 1258.914428/s
+    iteration_duration.........: avg=103.2ms min=100.29ms med=101.89ms max=239.04ms p(90)=106.76ms p(95)=109.18ms
+    iterations.................: 151224 1258.914428/s
+    vus........................: 130    min=130 max=130
+    vus_max....................: 130    min=130 max=130
+
+
+
+jred/users/jred/galvanize/sdc/review-service[master !]$ k6 run script.js
+
+          /\      |‾‾| /‾‾/   /‾‾/   
+     /\  /  \     |  |/  /   /  /    
+    /  \/    \    |     (   /   ‾‾\  
+   /          \   |  |\  \ |  (‾)  | 
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: script.js
+     output: -
+
+  scenarios: (100.00%) 1 scenario, 130 max VUs, 2m30s max duration (incl. graceful stop):
+           * default: 130 looping VUs for 2m0s (gracefulStop: 30s)
+
+
+running (2m00.1s), 000/130 VUs, 144992 complete and 0 interrupted iterations
+default ✓ [======================================] 130 VUs  2m0s
+
+    data_received..............: 63 MB  526 kB/s
+    data_sent..................: 15 MB  126 kB/s
+    http_req_blocked...........: avg=17.8µs   min=1µs      med=4µs      max=21ms     p(90)=7µs      p(95)=9µs    
+    http_req_connecting........: avg=1.83µs   min=0s       med=0s       max=13.62ms  p(90)=0s       p(95)=0s     
+    http_req_duration..........: avg=7.31ms   min=240µs    med=2.37ms   max=216.11ms p(90)=18.2ms   p(95)=28.44ms
+    http_req_receiving.........: avg=47.31µs  min=12µs     med=39µs     max=6.19ms   p(90)=74µs     p(95)=91µs   
+    http_req_sending...........: avg=19.93µs  min=5µs      med=16µs     max=5.75ms   p(90)=29µs     p(95)=37µs   
+    http_req_tls_handshaking...: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s     
+    http_req_waiting...........: avg=7.24ms   min=216µs    med=2.29ms   max=215.93ms p(90)=18.12ms  p(95)=28.37ms
+    http_reqs..................: 144992 1206.782164/s
+    iteration_duration.........: avg=107.62ms min=100.31ms med=102.68ms max=338.15ms p(90)=118.64ms p(95)=128.8ms
+    iterations.................: 144992 1206.782164/s
+    vus........................: 130    min=130 max=130
+    vus_max....................: 130    min=130 max=130
